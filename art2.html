@@ -1,74 +1,13 @@
-<!-- <html>
-<div id="chartContainer">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
-  <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
-  <script type="text/javascript">
-    var svg = dimple.newSvg("#chartContainer", 590, 400);
-    d3.csv("datasets_csv/drug_addicts_gender.csv", function (data) {
-      console.log(data)
-      var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(30, 15, 255, 152)
-      var x = myChart.addCategoryAxis("x", "Year");
-        x.addOrderRule("Date");
-      myChart.addMeasureAxis("y", "Total Drug Addicts");
-      var s = myChart.addSeries("Gender", dimple.plot.bar);
-        s.stacked = false;
-      myChart.addLegend(30, 5, 255, 10, "right");
-      myChart.draw();
-    });
-  </script>
-</div>
-</html> -->
-
-<!-- <html>
-<div id="chartContainer">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
-  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
-  <script type="text/javascript">
-    var svg = dimple.newSvg("#chartContainer", 590, 400);
-    d3.csv("datasets_csv/drug_addicts_gender.csv", function (data) {
-      console.log(data)
-      var myChart = new dimple.chart(svg, data);
-      myChart.setBounds(80, 30, 480, 330)
-      myChart.addCategoryAxis("x", "Year");
-      myChart.addMeasureAxis("y", "Total Drug Addicts");
-      myChart.addSeries("Gender", dimple.plot.bubble);
-      myChart.addLegend(60, 10, 510, 20, "right");
-      myChart.draw();
-    });
-  </script>
-</div>
-</html> -->
-
-<!-- <html>
-<div id="chartContainer">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
-  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
-  <script type="text/javascript">
-    var svg = dimple.newSvg("#chartContainer", 590, 400);
-      d3.csv("datasets_csv/drug_addicts_gender.csv", function (data) {
-        console.log(data);
-        var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(30, 15, 255, 152)
-        myChart.addCategoryAxis("x", "Year");
-        myChart.addMeasureAxis("y", "Total Drug Addicts");
-        myChart.addSeries("Gender", dimple.plot.bubble);
-        myChart.addLegend(100, 5, 180, 10, "right");
-        myChart.draw();
-      });
-  </script>
-</div>
-</html> -->
-
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <title>Visualising Malaysia&#39;s Drug Abuse Issues by imandimyati</title>
-
+  <title>Visualising Malaysia&#39;s Drug Abuse Issues</title>
   <link rel="stylesheet" href="stylesheets/styles.css">
   <link rel="stylesheet" href="stylesheets/github-light.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/dimple/2.2.0/dimple.latest.min.js"></script>
   <meta name="viewport" content="width=device-width">
   <!--[if lt IE 9]>
   <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -82,26 +21,176 @@
     </header>
 
     <section>
-      <div id="chartContainer">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/dimple/2.2.0/dimple.latest.min.js"></script>
+      <div id="genderChart">
+        <h4>Drug Addicts by Gender: Huge gap between men and women</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
         <script type="text/javascript">
-          var svg = dimple.newSvg("#chartContainer", 590, 400);
+        var svg = dimple.newSvg("#genderChart", 325, 215);
           d3.csv("datasets_csv/drug_addicts_gender.csv", function (data) {
-            console.log(data);
-            var myChart = new dimple.chart(svg, data);
-            myChart.setBounds(30, 15, 255, 152);
-            var x = myChart.addCategoryAxis("x", "Year");
+            console.log(data)
+            var genChart = new dimple.chart(svg, data);
+            genChart.setBounds(60, 15, 252, 152);
+
+            var x = genChart.addCategoryAxis("x", "Year");
             x.addOrderRule("Date");
-            myChart.addMeasureAxis("y", "Total Drug Addicts");
-            var s = myChart.addSeries("Gender", dimple.plot.area);
-            s.interpolation = "step";
-            s.lineWeight = 1;
-            myChart.addLegend(30, 5, 250, 10, "right");
-            myChart.draw();
+
+            var y = genChart.addMeasureAxis("y", "Total");
+            y.tickFormat = 'f';
+            y.overrideMin = 400;
+            y.overrideMax = 23200;
+
+            genChart.addSeries("Gender", dimple.plot.line);
+            genChart.addLegend(80, 5, 250, 5, "right");
+            genChart.draw();
           });
         </script>
       </div>
+
+      <div id="ageChart">
+        <h4>Drug Addicts by Age: Young adults number on the rise</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        var svgOne = dimple.newSvg("#ageChart", 325, 215);
+          d3.csv("datasets_csv/drug_addicts_age.csv", function (dataOne) {
+            console.log(dataOne)
+
+            var ageChart = new dimple.chart(svgOne, dataOne);
+            ageChart.setBounds(60, 15, 252, 152);
+
+            var xOne = ageChart.addCategoryAxis("x", "Year");
+            xOne.addOrderRule("Date");
+
+            var yOne = ageChart.addMeasureAxis("y", "Total");
+            yOne.tickFormat = 'f';
+
+            ageChart.addSeries("Age", dimple.plot.line);
+            ageChart.draw();
+          });
+        </script>
+      </div>
+
+      <div id="ethnicChart">
+        <h4>Drug Addicts by Ethicity: Most drug addicts are Malays</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        var svgTwo = dimple.newSvg("#ethnicChart", 325, 215);
+          d3.csv("datasets_csv/drug_addicts_ethnic.csv", function (dataTwo) {
+            console.log(dataTwo)
+
+            var ethChart = new dimple.chart(svgTwo, dataTwo);
+            ethChart.setBounds(60, 15, 252, 152);
+
+            var xTwo = ethChart.addCategoryAxis("x", "Year");
+            xTwo.addOrderRule("Date");
+
+            var yTwo = ethChart.addMeasureAxis("y", "Total");
+            yTwo.tickFormat = 'f';
+
+            ethChart.addSeries("Ethnicity", dimple.plot.line);
+            ethChart.draw();
+          });
+        </script>
+      </div>
+
+      <div id="educationChart">
+        <h4>Drug Addicts by Education Qualifications: Most drug addicts had no tertiary education</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        var svgThree = dimple.newSvg("#educationChart", 325, 215);
+          d3.csv("datasets_csv/drug_addicts_education.csv", function (dataThree) {
+            console.log(dataThree)
+
+            var eduChart = new dimple.chart(svgThree, dataThree);
+            eduChart.setBounds(60, 15, 252, 152);
+
+            var xThree = eduChart.addCategoryAxis("x", "Year");
+            xThree.addOrderRule("Date");
+
+            var yThree = eduChart.addMeasureAxis("y", "Total");
+            yThree.tickFormat = 'f';
+
+            eduChart.addSeries("Education Qualifications", dimple.plot.line);
+            eduChart.draw();
+          });
+        </script>
+      </div>
+
+      <div id="occupationChart">
+        <h4>Drug Addicts by Occupation: Labourers prone to drug abuse</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        var svgFour = dimple.newSvg("#occupationChart", 325, 215);
+          d3.csv("datasets_csv/drug_addicts_occupation.csv", function (dataFour) {
+            console.log(dataFour)
+
+            var occChart = new dimple.chart(svgFour, dataFour);
+            occChart.setBounds(60, 15, 252, 152);
+
+            var xFour = occChart.addCategoryAxis("x", "Year");
+            xFour.addOrderRule("Date");
+
+            var yFour = occChart.addMeasureAxis("y", "Total");
+            yFour.tickFormat = 'f';
+
+            occChart.addSeries("Occupation", dimple.plot.line);
+            occChart.draw();
+          });
+        </script>
+      </div>
+
+      <div id="reasonsChart">
+        <h4>Reasons for Taking Drugs: Most addicts were influenced by friends</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        var svgFive = dimple.newSvg("#reasonsChart", 325, 215);
+          d3.csv("datasets_csv/drug_addicts_reasons.csv", function (dataFive) {
+            console.log(dataFive)
+
+            var rssChart = new dimple.chart(svgFive, dataFive);
+            rssChart.setBounds(60, 15, 252, 152);
+
+            var xFive = rssChart.addCategoryAxis("x", "Year");
+            xFive.addOrderRule("Date");
+
+            var yFive = rssChart.addMeasureAxis("y", "Total");
+            yFive.tickFormat = 'f';
+
+            rssChart.addSeries("Reasons", dimple.plot.line);
+            rssChart.draw();
+          });
+        </script>
+      </div>
+
     </section>
 
   </div>
