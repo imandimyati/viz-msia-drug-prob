@@ -1,6 +1,31 @@
-Year,Malay,Bumiputera Sabah,Bumiputera Sarawak,Chinese,Indian,Other Ethnic
-2010,18693,456,29,2279,2037,148
-2011,15386,405,63,1926,1634,117
-2012,11612,253,58,1658,1419,101
-2013,16092,467,137,2081,1975,135
-2014,17122,842,180,1828,1657,148
+Year,Ethnicity,Total
+2010,Malay,18693
+2010,Bumiputera Sabah,456
+2010,Bumiputera Sarawak,29
+2010,Chinese,2279
+2010,Indian,2037
+2010,Others,148
+2011,Malay,15386
+2011,Bumiputera Sabah,405
+2011,Bumiputera Sarawak,63
+2011,Chinese,1926
+2011,Indian,1634
+2011,Others,117
+2012,Malay,11612
+2012,Bumiputera Sabah,253
+2012,Bumiputera Sarawak,58
+2012,Chinese,1658
+2012,Indian,1419
+2012,Others,101
+2013,Malay,16092
+2013,Bumiputera Sabah,467
+2013,Bumiputera Sarawak,137
+2013,Chinese,2081
+2013,Indian,1975
+2013,Others,135
+2014,Malay,17122
+2014,Bumiputera Sabah,842
+2014,Bumiputera Sarawak,180
+2014,Chinese,1828
+2014,Indian,1657
+2014,Others,148
