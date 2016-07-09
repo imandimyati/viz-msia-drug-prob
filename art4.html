@@ -18,7 +18,7 @@
     <header>
       <h1>'Drugging' Down the Nation</h1>
       <p>Making sense of the social impact in relations to drug abuse in Malaysia</p>
-      <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/main.htmlb">The Costs of Tackling Drug Abuse<small>Looking at the costs of tackling drug abuse in Malaysia</small></a></p>
+      <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/main.html">The Costs of Tackling Drug Abuse<small>Looking at the costs of tackling drug abuse in Malaysia</small></a></p>
       <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/art2.html">An In-Depth Look into Malaysia's Drug Addicts<small>Exploring the demographic data of drug addicts in Malaysia</small></a></p>
       <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/art3.html">Drug Crimes: Offenses and Punishments<small>A look into drug-related offenses and punishments in Malaysia</small></a></p>
       <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/art4.html">'Drugging' Down the Nation<small>Making sense of the social impact in relations to drug abuse in Malaysia</small></a></p>
@@ -34,24 +34,6 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svg = dimple.newSvg("#genderChart", 325, 215);
-          d3.csv("datasets_csv/drug_addicts_gender.csv", function (data) {
-            console.log(data)
-            var genChart = new dimple.chart(svg, data);
-            genChart.setBounds(60, 15, 252, 152);
-
-            var x = genChart.addCategoryAxis("x", "Year");
-            x.addOrderRule("Date");
-
-            var y = genChart.addMeasureAxis("y", "Total");
-            y.tickFormat = 'f';
-            y.overrideMin = 400;
-            y.overrideMax = 23200;
-
-            genChart.addSeries("Gender", dimple.plot.line);
-            genChart.addLegend(80, 5, 250, 5, "right");
-            genChart.draw();
-          });
         </script>
       </div>
 
@@ -64,22 +46,6 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgOne = dimple.newSvg("#ageChart", 325, 215);
-          d3.csv("datasets_csv/drug_addicts_age.csv", function (dataOne) {
-            console.log(dataOne)
-
-            var ageChart = new dimple.chart(svgOne, dataOne);
-            ageChart.setBounds(60, 15, 252, 152);
-
-            var xOne = ageChart.addCategoryAxis("x", "Year");
-            xOne.addOrderRule("Date");
-
-            var yOne = ageChart.addMeasureAxis("y", "Total");
-            yOne.tickFormat = 'f';
-
-            ageChart.addSeries("Age", dimple.plot.line);
-            ageChart.draw();
-          });
         </script>
       </div>
 
@@ -92,22 +58,6 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgTwo = dimple.newSvg("#ethnicChart", 325, 215);
-          d3.csv("datasets_csv/drug_addicts_ethnic.csv", function (dataTwo) {
-            console.log(dataTwo)
-
-            var ethChart = new dimple.chart(svgTwo, dataTwo);
-            ethChart.setBounds(60, 15, 252, 152);
-
-            var xTwo = ethChart.addCategoryAxis("x", "Year");
-            xTwo.addOrderRule("Date");
-
-            var yTwo = ethChart.addMeasureAxis("y", "Total");
-            yTwo.tickFormat = 'f';
-
-            ethChart.addSeries("Ethnicity", dimple.plot.line);
-            ethChart.draw();
-          });
         </script>
       </div>
 
@@ -120,22 +70,6 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgThree = dimple.newSvg("#educationChart", 325, 215);
-          d3.csv("datasets_csv/drug_addicts_education.csv", function (dataThree) {
-            console.log(dataThree)
-
-            var eduChart = new dimple.chart(svgThree, dataThree);
-            eduChart.setBounds(60, 15, 252, 152);
-
-            var xThree = eduChart.addCategoryAxis("x", "Year");
-            xThree.addOrderRule("Date");
-
-            var yThree = eduChart.addMeasureAxis("y", "Total");
-            yThree.tickFormat = 'f';
-
-            eduChart.addSeries("Education Qualifications", dimple.plot.line);
-            eduChart.draw();
-          });
         </script>
       </div>
 
@@ -148,22 +82,6 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgFour = dimple.newSvg("#occupationChart", 325, 215);
-          d3.csv("datasets_csv/drug_addicts_occupation.csv", function (dataFour) {
-            console.log(dataFour)
-
-            var occChart = new dimple.chart(svgFour, dataFour);
-            occChart.setBounds(60, 15, 252, 152);
-
-            var xFour = occChart.addCategoryAxis("x", "Year");
-            xFour.addOrderRule("Date");
-
-            var yFour = occChart.addMeasureAxis("y", "Total");
-            yFour.tickFormat = 'f';
-
-            occChart.addSeries("Occupation", dimple.plot.line);
-            occChart.draw();
-          });
         </script>
       </div>
 
@@ -176,22 +94,6 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgFive = dimple.newSvg("#reasonsChart", 325, 215);
-          d3.csv("datasets_csv/drug_addicts_reasons.csv", function (dataFive) {
-            console.log(dataFive)
-
-            var rssChart = new dimple.chart(svgFive, dataFive);
-            rssChart.setBounds(60, 15, 252, 152);
-
-            var xFive = rssChart.addCategoryAxis("x", "Year");
-            xFive.addOrderRule("Date");
-
-            var yFive = rssChart.addMeasureAxis("y", "Total");
-            yFive.tickFormat = 'f';
-
-            rssChart.addSeries("Reasons", dimple.plot.line);
-            rssChart.draw();
-          });
         </script>
       </div>
 
