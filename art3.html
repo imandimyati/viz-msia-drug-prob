@@ -25,6 +25,34 @@
     </header>
 
     <section>
+      <div id="urineChart">
+        <h4>Urine Test: Numbers are still high</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        var svgOne = dimple.newSvg("#urineChart", 400, 215);
+          d3.csv("datasets_csv/urine_test_caught.csv", function (dataOne) {
+            console.log(dataOne)
+
+            var uriChart = new dimple.chart(svgOne, dataOne);
+            uriChart.setBounds(65, 20, 252, 152);
+
+            var xOne = uriChart.addCategoryAxis("x", "Year");
+            xOne.addOrderRule("Date");
+
+            var yOne = uriChart.addMeasureAxis("y", "Total");
+            yOne.tickFormat = 'f';
+
+            var sOne = uriChart.addSeries(null, dimple.plot.line);
+            uriChart.draw();
+        });
+        </script>
+      </div>
+
       <div id="genderChart">
         <h4>Arrested and Remanded: Huge gap between men and women</h4>
 
@@ -34,44 +62,42 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-          var svg = dimple.newSvg("#genderChart", 380, 270);
-          d3.csv("datasets_csv/institution_case_caught.csv", function (data) {
-            var myChart = new dimple.chart(svg, data);
-            myChart.setBounds(60, 15, 252, 152)
-            var x = myChart.addCategoryAxis("x", ["Institution", "Crime"]);
-            var y = myChart.addMeasureAxis("y", "Total");
-              y.tickFormat = 'f';
-            var s = myChart.addSeries("Gender", dimple.plot.bar);
+          var svgTwo = dimple.newSvg("#genderChart", 400, 300);
+          d3.csv("datasets_csv/institution_case_caught.csv", function (dataTwo) {
+            var genChart = new dimple.chart(svgTwo, dataTwo);
+            genChart.setBounds(65, 20, 252, 152)
 
-            s.afterDraw = function (shape, data) {
+            var xTwo = genChart.addCategoryAxis("x", ["Institution", "Crime"]);
+
+            var yTwo = genChart.addMeasureAxis("y", "Total");
+              yTwo.tickFormat = 'f';
+
+            var sTwo = genChart.addSeries("Gender", dimple.plot.bar);
+
+            sTwo.afterDraw = function (shapeTwo, dataTwo) {
               // Get the shape as a d3 selection
-              var s = d3.select(shape),
+              var sTwo = d3.select(shapeTwo),
                 rect = {
-                  x: parseFloat(s.attr("x")),
-                  y: parseFloat(s.attr("y")),
-                  width: parseFloat(s.attr("width")),
-                  height: parseFloat(s.attr("height"))
+                  x: parseFloat(sTwo.attr("x")),
+                  y: parseFloat(sTwo.attr("y")),
+                  width: parseFloat(sTwo.attr("width")),
+                  height: parseFloat(sTwo.attr("height"))
                 };
             };
-            myChart.addLegend(80, 5, 250, 5, "right");
+            genChart.addLegend(80, 5, 250, 5, "right");
 
-            var myStoryboard = myChart.setStoryboard("Year");
-              myStoryboard.onTick = function (e) {
+            var genStoryboard = genChart.setStoryboard("Year");
+              genStoryboard.onTick = function (e) {
                       console.log(e.frameValue);
             };
 
-            myChart.draw();
-
-            x.shapes.selectAll("text").attr("transform",
-              function (d) {
-                return d3.select(this).attr("transform") + "translate(-5, 0) rotate(0,42,12.6640625)";
-              });
+            genChart.draw();
           });
         </script>
       </div>
 
-      <div id="ageChart">
-        <h4>Drug Addicts by Age: Young adults number on the rise</h4>
+      <div id="crimeChart">
+        <h4>Drug Crimes Committed: Despite harsh punishment, drug crimes still on the rise</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -79,54 +105,22 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        </script>
-      </div>
+          var svgThree = dimple.newSvg("#crimeChart", 400, 300);
+           d3.csv("datasets_csv/dda_1952_caught.csv", function (dataThree) {
+             var criChart = new dimple.chart(svgThree, dataThree);
+             criChart.setBounds(65, 20, 252, 152)
 
-      <div id="ethnicChart">
-        <h4>Drug Addicts by Ethicity: Most drug addicts are Malays</h4>
+             var xThree = criChart.addCategoryAxis("x", "Year");
+             xThree.addOrderRule("Date");
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
-          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
-          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
-          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+             var yThree = criChart.addMeasureAxis("y", "Total");
+             yThree.tickFormat = 'f';
 
-        <script type="text/javascript">
-        </script>
-      </div>
+             var sThree = criChart.addSeries("Dangerous Drug Act, 1952", dimple.plot.bar);
+             sThree.stacked = false;
 
-      <div id="educationChart">
-        <h4>Drug Addicts by Education Qualifications: Most drug addicts had no tertiary education</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
-          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
-          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
-          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
-
-        <script type="text/javascript">
-        </script>
-      </div>
-
-      <div id="occupationChart">
-        <h4>Drug Addicts by Occupation: Labourers prone to drug abuse</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
-          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
-          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
-          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
-
-        <script type="text/javascript">
-        </script>
-      </div>
-
-      <div id="reasonsChart">
-        <h4>Reasons for Taking Drugs: Most addicts were influenced by friends</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
-          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
-          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
-          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
-
-        <script type="text/javascript">
+             criChart.draw();
+         });
         </script>
       </div>
 
