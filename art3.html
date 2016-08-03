@@ -26,7 +26,7 @@
 
     <section>
       <div id="genderChart">
-        <h4>Drug Addicts by Gender: Huge gap between men and women</h4>
+        <h4>Arrested and Remanded: Huge gap between men and women</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -34,6 +34,39 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
+          var svg = dimple.newSvg("#genderChart", 380, 270);
+          d3.csv("datasets_csv/institution_case_caught.csv", function (data) {
+            var myChart = new dimple.chart(svg, data);
+            myChart.setBounds(60, 15, 252, 152)
+            var x = myChart.addCategoryAxis("x", ["Institution", "Crime"]);
+            var y = myChart.addMeasureAxis("y", "Total");
+              y.tickFormat = 'f';
+            var s = myChart.addSeries("Gender", dimple.plot.bar);
+
+            s.afterDraw = function (shape, data) {
+              // Get the shape as a d3 selection
+              var s = d3.select(shape),
+                rect = {
+                  x: parseFloat(s.attr("x")),
+                  y: parseFloat(s.attr("y")),
+                  width: parseFloat(s.attr("width")),
+                  height: parseFloat(s.attr("height"))
+                };
+            };
+            myChart.addLegend(80, 5, 250, 5, "right");
+
+            var myStoryboard = myChart.setStoryboard("Year");
+              myStoryboard.onTick = function (e) {
+                      console.log(e.frameValue);
+            };
+
+            myChart.draw();
+
+            x.shapes.selectAll("text").attr("transform",
+              function (d) {
+                return d3.select(this).attr("transform") + "translate(-5, 0) rotate(0,42,12.6640625)";
+              });
+          });
         </script>
       </div>
 

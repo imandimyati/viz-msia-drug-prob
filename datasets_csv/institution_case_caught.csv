@@ -1,0 +1,37 @@
+Year,Institution,Crime,Gender,Total,Year in Total
+2013,Prison,Distributor,Male,857,7515
+2013,Prison,Distributor,Female,72,7515
+2013,Prison,Drug Addict,Male,4035,7515
+2013,Prison,Drug Addict,Female,186,7515
+2013,Prison,Distributor and Drug Addict,Male,2365,7515
+2013,Prison,Distributor and Drug Addict,Female,0,7515
+2013,Henry Gurney School (Juvenile),Distributor,Male,31,173
+2013,Henry Gurney School (Juvenile),Distributor,Female,1,173
+2013,Henry Gurney School (Juvenile),Drug Addict,Male,111,173
+2013,Henry Gurney School (Juvenile),Drug Addict,Female,21,173
+2013,Henry Gurney School (Juvenile),Distributor and Drug Addict,Male,9,173
+2013,Henry Gurney School (Juvenile),Distributor and Drug Addict,Female,0,173
+2013,Rehabilition Centre (SPM Cases),Distributor,Male,190,504
+2013,Rehabilition Centre (SPM Cases),Distributor,Female,5,504
+2013,Rehabilition Centre (SPM Cases),Drug Addict,Male,0,504
+2013,Rehabilition Centre (SPM Cases),Drug Addict,Female,0,504
+2013,Rehabilition Centre (SPM Cases),Distributor and Drug Addict,Male,293,504
+2013,Rehabilition Centre (SPM Cases),Distributor and Drug Addict,Female,16,504
+2014,Prison,Distributor,Male,1881,12403
+2014,Prison,Distributor,Female,290,12403
+2014,Prison,Drug Addict,Male,6216,12403
+2014,Prison,Drug Addict,Female,464,12403
+2014,Prison,Distributor and Drug Addict,Male,3477,12403
+2014,Prison,Distributor and Drug Addict,Female,75,12403
+2014,Henry Gurney School (Juvenile),Distributor,Male,47,228
+2014,Henry Gurney School (Juvenile),Distributor,Female,6,228
+2014,Henry Gurney School (Juvenile),Drug Addict,Male,125,228
+2014,Henry Gurney School (Juvenile),Drug Addict,Female,41,228
+2014,Henry Gurney School (Juvenile),Distributor and Drug Addict,Male,9,228
+2014,Henry Gurney School (Juvenile),Distributor and Drug Addict,Female,0,228
+2014,Rehabilition Centre (SPM Cases),Distributor,Male,140,863
+2014,Rehabilition Centre (SPM Cases),Distributor,Female,10,863
+2014,Rehabilition Centre (SPM Cases),Drug Addict,Male,204,863
+2014,Rehabilition Centre (SPM Cases),Drug Addict,Female,0,863
+2014,Rehabilition Centre (SPM Cases),Distributor and Drug Addict,Male,488,863
+2014,Rehabilition Centre (SPM Cases),Distributor and Drug Addict,Female,21,863
