@@ -25,8 +25,8 @@
     </header>
 
     <section>
-      <div id="genderChart">
-        <h4>Drug Addicts by Gender: Huge gap between men and women</h4>
+      <div id="rehabChart">
+        <h4>Cost of Compulsary Rehab: Barely any change, no decrease to number of residents</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -34,11 +34,23 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
+          var svgOne = dimple.newSvg("#rehabChart", 325, 215);
+           d3.csv("datasets_csv/puspen_cost.csv", function (dataOne) {
+
+            var rehChart = new dimple.chart(svgOne, dataOne);
+            rehChart.setBounds(60, 15, 252, 152)
+            rehChart.addCategoryAxis("x", "Year");
+            var yOne = rehChart.addMeasureAxis("y", "Cost Estimate (RM)");
+              yOne.tickFormat = 'f';
+            rehChart.addMeasureAxis("z", "Number of Residents");
+            rehChart.addSeries("Year", dimple.plot.bubble);
+            rehChart.draw();
+          });
         </script>
       </div>
 
-      <div id="ageChart">
-        <h4>Drug Addicts by Age: Young adults number on the rise</h4>
+      <div id="aadksChart">
+        <h4>Narcotics Agency Spending: Huge chunk goes to operation</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -46,11 +58,42 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
+          var svgTwo = dimple.newSvg("#aadksChart", 350, 250);
+           d3.csv("datasets_csv/aadk_cost.csv", function (dataTwo) {
+             console.log(dataTwo)
+
+             var aadkChart = new dimple.chart(svgTwo, dataTwo);
+             aadkChart.setBounds(75, 30, 250, 150);
+
+             // Define all the axes
+             var xAxis = aadkChart.addCategoryAxis("x", "Year");
+             var yAxis = aadkChart.addMeasureAxis("y", "Total Cost (RM)");
+             var segments = aadkChart.addMeasureAxis("p", "Cost (RM)");
+             var size = aadkChart.addMeasureAxis("z", "Total Cost (RM)");
+             var ring = aadkChart.addSeries("Purpose", dimple.plot.pie);
+             var pie = aadkChart.addSeries("Total Cost (RM)", dimple.plot.pie);
+
+             // Set the maximum radius for the bubbles
+             ring.radius = 15;
+             pie.radius = 15;
+
+             // Create fixed 10px ring with a 5px
+             // margin (negative sizes are calculated inwards)
+             ring.innerRadius = "-5px";
+             pie.outerRadius = "-7px";
+
+             // Animate by date
+             var frame = 5000;
+             var aadkStory = aadkChart.setStoryboard("Year");
+             aadkStory.frameDuration = frame;
+
+             aadkChart.draw();
+         });
         </script>
       </div>
 
-      <div id="ethnicChart">
-        <h4>Drug Addicts by Ethicity: Most drug addicts are Malays</h4>
+      <div id="seizeChart">
+        <h4>Drug Seizure: Millions worth of drug confiscated, cocaine the highest</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -58,42 +101,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        </script>
-      </div>
-
-      <div id="educationChart">
-        <h4>Drug Addicts by Education Qualifications: Most drug addicts had no tertiary education</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
-          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
-          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
-          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
-
-        <script type="text/javascript">
-        </script>
-      </div>
-
-      <div id="occupationChart">
-        <h4>Drug Addicts by Occupation: Labourers prone to drug abuse</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
-          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
-          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
-          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
-
-        <script type="text/javascript">
-        </script>
-      </div>
-
-      <div id="reasonsChart">
-        <h4>Reasons for Taking Drugs: Most addicts were influenced by friends</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
-          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
-          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
-          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
-
-        <script type="text/javascript">
+          var svgThree = dimple.newSvg("#seizeChart", 325, 215);
+            d3.csv("datasets_csv/seizure_value.csv", function (dataThree) {
+              var seiChart = new dimple.chart(svgThree, dataThree);
+              seiChart.setBounds(60, 15, 252, 152)
+              var xThree = seiChart.addCategoryAxis("x", ["Year", "Type of Drug"]);
+              xThree.addOrderRule("Date");
+              seiChart.addMeasureAxis("y", "Estimated Value (RM)");
+              seiChart.addMeasureAxis("z", "Estimated Value (RM)");
+              seiChart.addSeries("Type of Drug", dimple.plot.bubble);
+              seiChart.draw();
+          });
         </script>
       </div>
 
