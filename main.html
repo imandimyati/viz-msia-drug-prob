@@ -35,7 +35,7 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-          var svgOne = dimple.newSvg("#rehabChart", 325, 215);
+          var svgOne = dimple.newSvg("#rehabChart", 450, 215);
            d3.csv("datasets_csv/puspen_cost.csv", function (dataOne) {
 
             var rehChart = new dimple.chart(svgOne, dataOne);
@@ -45,6 +45,7 @@
               yOne.tickFormat = 'f';
             rehChart.addMeasureAxis("z", "Number of Residents");
             rehChart.addSeries("Year", dimple.plot.bubble);
+            var myLegendOne = rehChart.addLegend(370, 5, 5, 80, "right");
             rehChart.draw();
           });
         </script>

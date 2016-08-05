@@ -35,9 +35,18 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svg = dimple.newSvg("#genderChart", 325, 215);
+        var svg = dimple.newSvg("#genderChart", 450, 215);
           d3.csv("datasets_csv/drug_addicts_gender.csv", function (data) {
             console.log(data)
+
+            svg.append("text")
+              .attr("x", 180)
+              .attr("y", 8)
+              .attr("text-anchor", "middle")
+              .style("font-size", "10px")
+              .style("font-weight", "bold")
+              .text("Drug Addicts Breakdown by Gender");
+
             var genChart = new dimple.chart(svg, data);
             genChart.setBounds(60, 15, 252, 152);
 
@@ -46,13 +55,57 @@
 
             var y = genChart.addMeasureAxis("y", "Total");
             y.tickFormat = 'f';
-            y.overrideMin = 400;
-            y.overrideMax = 23200;
 
-            genChart.addSeries("Gender", dimple.plot.line);
-            genChart.addLegend(80, 5, 250, 5, "right");
+            mySeries = genChart.addSeries("Gender", dimple.plot.line);
+              mySeries.lineMarkers = true;
+            var myLegend = genChart.addLegend(380, 15, 5, 180, "right");
+
             genChart.draw();
-          });
+
+            genChart.legends = [];
+
+            svg.selectAll("title_text")
+              .data(["Click legend to","show/hide gender:"])
+              .enter()
+              .append("text")
+                .attr("x", 315)
+                .attr("y", function (d, i) { return 10 + i * 12; })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style("color", "Black")
+                .text(function (d) { return d; });
+
+            var filterValues = dimple.getUniqueValues(data, "Gender");
+
+            myLegend.shapes.selectAll("rect")
+              // Add a click event to each rectangle
+              .on("click", function (e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFilters = [];
+                // If the filters contain the clicked shape hide it
+                filterValues.forEach(function (f) {
+                  if (f === e.aggField.slice(-1)[0]) {
+                    hide = true;
+                  } else {
+                    newFilters.push(f);
+                  }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                  d3.select(this).style("opacity", 0.4);
+                } else {
+                  newFilters.push(e.aggField.slice(-1)[0]);
+                  d3.select(this).style("opacity", 0.9);
+                }
+                // Update the filters
+                filterValues = newFilters;
+                // Filter the data
+                genChart.data = dimple.filterData(data, "Gender", filterValues);
+
+                genChart.draw(800);
+              });
+            });
         </script>
       </div>
 
@@ -65,9 +118,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgOne = dimple.newSvg("#ageChart", 325, 215);
+        var svgOne = dimple.newSvg("#ageChart", 450, 215);
           d3.csv("datasets_csv/drug_addicts_age.csv", function (dataOne) {
             console.log(dataOne)
+
+            svgOne.append("text")
+              .attr("x", 180)
+              .attr("y", 8)
+              .attr("text-anchor", "middle")
+              .style("font-size", "10px")
+              .style("font-weight", "bold")
+              .text("Drug Addicts Breakdown by Age");
 
             var ageChart = new dimple.chart(svgOne, dataOne);
             ageChart.setBounds(60, 15, 252, 152);
@@ -78,9 +139,56 @@
             var yOne = ageChart.addMeasureAxis("y", "Total");
             yOne.tickFormat = 'f';
 
-            ageChart.addSeries("Age", dimple.plot.line);
+            var mySeriesOne = ageChart.addSeries("Age", dimple.plot.line);
+              mySeriesOne.lineMarkers = true;
+            var myLegendOne = ageChart.addLegend(415, 15, 5, 180, "right");
+
             ageChart.draw();
-          });
+
+            ageChart.legends = [];
+
+            svgOne.selectAll("title_text")
+              .data(["Click legend to","show/hide age:"])
+              .enter()
+              .append("text")
+                .attr("x", 318)
+                .attr("y", function (d, i) { return 10 + i * 12; })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style("color", "Black")
+                .text(function (d) { return d; });
+
+            var filterValuesOne = dimple.getUniqueValues(dataOne, "Age");
+
+            myLegendOne.shapes.selectAll("rect")
+              // Add a click event to each rectangle
+              .on("click", function (e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFiltersOne = [];
+                // If the filters contain the clicked shape hide it
+                filterValuesOne.forEach(function (f) {
+                  if (f === e.aggField.slice(-1)[0]) {
+                    hide = true;
+                  } else {
+                    newFiltersOne.push(f);
+                  }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                  d3.select(this).style("opacity", 0.4);
+                } else {
+                  newFiltersOne.push(e.aggField.slice(-1)[0]);
+                  d3.select(this).style("opacity", 0.9);
+                }
+                // Update the filters
+                filterValuesOne = newFiltersOne;
+                // Filter the data
+                ageChart.data = dimple.filterData(dataOne, "Age", filterValuesOne);
+
+                ageChart.draw(800);
+              });
+            });
         </script>
       </div>
 
@@ -93,9 +201,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgTwo = dimple.newSvg("#ethnicChart", 400, 290);
+        var svgTwo = dimple.newSvg("#ethnicChart", 450, 215);
           d3.csv("datasets_csv/drug_addicts_ethnic.csv", function (dataTwo) {
             console.log(dataTwo)
+
+            svgTwo.append("text")
+              .attr("x", 180)
+              .attr("y", 8)
+              .attr("text-anchor", "middle")
+              .style("font-size", "10px")
+              .style("font-weight", "bold")
+              .text("Drug Addicts Breakdown by Ethnicity");
 
             var ethChart = new dimple.chart(svgTwo, dataTwo);
             ethChart.setBounds(60, 15, 252, 152);
@@ -106,14 +222,61 @@
             var yTwo = ethChart.addMeasureAxis("y", "Total");
             yTwo.tickFormat = 'f';
 
-            ethChart.addSeries("Ethnicity", dimple.plot.line);
+            var mySeriesTwo = ethChart.addSeries("Ethnicity", dimple.plot.line);
+                mySeriesTwo.lineMarkers = true;
+            var myLegendTwo = ethChart.addLegend(440, 18, 5, 180, "right");
+
             ethChart.draw();
-          });
+
+            ethChart.legends = [];
+
+            svgTwo.selectAll("title_text")
+              .data(["Click legend to","show/hide ethnicity:"])
+              .enter()
+              .append("text")
+                .attr("x", 315)
+                .attr("y", function (d, i) { return 10 + i * 12; })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style("color", "Black")
+                .text(function (d) { return d; });
+
+            var filterValuesTwo = dimple.getUniqueValues(dataTwo, "Ethnicity");
+
+            myLegendTwo.shapes.selectAll("rect")
+              // Add a click event to each rectangle
+              .on("click", function (e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFiltersTwo = [];
+                // If the filters contain the clicked shape hide it
+                filterValuesTwo.forEach(function (f) {
+                  if (f === e.aggField.slice(-1)[0]) {
+                    hide = true;
+                  } else {
+                    newFiltersTwo.push(f);
+                  }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                  d3.select(this).style("opacity", 0.4);
+                } else {
+                  newFiltersTwo.push(e.aggField.slice(-1)[0]);
+                  d3.select(this).style("opacity", 0.9);
+                }
+                // Update the filters
+                filterValuesTwo = newFiltersTwo;
+                // Filter the data
+                ethChart.data = dimple.filterData(dataTwo, "Ethnicity", filterValuesTwo);
+
+                ethChart.draw(800);
+              });
+            });
         </script>
       </div>
 
       <div id="educationChart">
-        <h4>Drug Addicts by Education Qualifications: Most drug addicts had no tertiary education</h4>
+        <h4>Drug Addicts by Education Qualification: Most drug addicts had no tertiary education</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -121,9 +284,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgThree = dimple.newSvg("#educationChart", 400, 290);
+        var svgThree = dimple.newSvg("#educationChart", 450, 215);
           d3.csv("datasets_csv/drug_addicts_education.csv", function (dataThree) {
             console.log(dataThree)
+
+            svgThree.append("text")
+              .attr("x", 180)
+              .attr("y", 8)
+              .attr("text-anchor", "middle")
+              .style("font-size", "10px")
+              .style("font-weight", "bold")
+              .text("Drug Addicts Breakdown by Education Qualification");
 
             var eduChart = new dimple.chart(svgThree, dataThree);
             eduChart.setBounds(60, 15, 252, 152);
@@ -134,9 +305,56 @@
             var yThree = eduChart.addMeasureAxis("y", "Total");
             yThree.tickFormat = 'f';
 
-            eduChart.addSeries("Education Qualifications", dimple.plot.line);
+            var mySeriesThree = eduChart.addSeries("Education Qualifications", dimple.plot.line);
+              mySeriesThree.lineMarkers = true;
+            var myLegendThree = eduChart.addLegend(435, 18, 5, 180, "right");
+
             eduChart.draw();
-          });
+
+            eduChart.legends = [];
+
+            svgThree.selectAll("title_text")
+              .data(["Click legend to show/hide","education qualification:"])
+              .enter()
+              .append("text")
+                .attr("x", 314)
+                .attr("y", function (d, i) { return 10 + i * 12; })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style("color", "Black")
+                .text(function (d) { return d; });
+
+            var filterValuesThree = dimple.getUniqueValues(dataThree, "Education Qualifications");
+
+            myLegendThree.shapes.selectAll("rect")
+              // Add a click event to each rectangle
+              .on("click", function (e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFiltersThree = [];
+                // If the filters contain the clicked shape hide it
+                filterValuesThree.forEach(function (f) {
+                  if (f === e.aggField.slice(-1)[0]) {
+                    hide = true;
+                  } else {
+                    newFiltersThree.push(f);
+                  }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                  d3.select(this).style("opacity", 0.4);
+                } else {
+                  newFiltersThree.push(e.aggField.slice(-1)[0]);
+                  d3.select(this).style("opacity", 0.9);
+                }
+                // Update the filters
+                filterValuesThree = newFiltersThree;
+                // Filter the data
+                eduChart.data = dimple.filterData(dataThree, "Education Qualifications", filterValuesThree);
+
+                eduChart.draw(800);
+              });
+            });
         </script>
       </div>
 
@@ -149,9 +367,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgFour = dimple.newSvg("#occupationChart", 400, 290);
+        var svgFour = dimple.newSvg("#occupationChart", 450, 300);
           d3.csv("datasets_csv/drug_addicts_occupation.csv", function (dataFour) {
             console.log(dataFour)
+
+            svgFour.append("text")
+              .attr("x", 180)
+              .attr("y", 8)
+              .attr("text-anchor", "middle")
+              .style("font-size", "10px")
+              .style("font-weight", "bold")
+              .text("Drug Addicts Breakdown by Occupation");
 
             var occChart = new dimple.chart(svgFour, dataFour);
             occChart.setBounds(60, 15, 252, 152);
@@ -162,9 +388,56 @@
             var yFour = occChart.addMeasureAxis("y", "Total");
             yFour.tickFormat = 'f';
 
-            occChart.addSeries("Occupation", dimple.plot.line);
+            var mySeriesFour = occChart.addSeries("Occupation", dimple.plot.line);
+              mySeriesFour.lineMarkers = true;
+            var myLegendFour = occChart.addLegend(30, 230, 300, 80, "right");
+
             occChart.draw();
-          });
+
+            occChart.legends = [];
+
+            svgFour.selectAll("title_text")
+              .data(["Click legend to show/hide occupation:"])
+              .enter()
+              .append("text")
+                .attr("x", 32)
+                .attr("y", function (d, i) { return 220 + i * 12; })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style("color", "Black")
+                .text(function (d) { return d; });
+
+            var filterValuesFour = dimple.getUniqueValues(dataFour, "Occupation");
+
+            myLegendFour.shapes.selectAll("rect")
+              // Add a click event to each rectangle
+              .on("click", function (e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFiltersFour = [];
+                // If the filters contain the clicked shape hide it
+                filterValuesFour.forEach(function (f) {
+                  if (f === e.aggField.slice(-1)[0]) {
+                    hide = true;
+                  } else {
+                    newFiltersFour.push(f);
+                  }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                  d3.select(this).style("opacity", 0.4);
+                } else {
+                  newFiltersFour.push(e.aggField.slice(-1)[0]);
+                  d3.select(this).style("opacity", 0.9);
+                }
+                // Update the filters
+                filterValuesFour = newFiltersFour;
+                // Filter the data
+                occChart.data = dimple.filterData(dataFour, "Occupation", filterValuesFour);
+
+                occChart.draw(800);
+              });
+            });
         </script>
       </div>
 
@@ -177,9 +450,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgFive = dimple.newSvg("#reasonsChart", 400, 290);
+        var svgFive = dimple.newSvg("#reasonsChart", 450, 215);
           d3.csv("datasets_csv/drug_addicts_reasons.csv", function (dataFive) {
             console.log(dataFive)
+
+            svgFive.append("text")
+              .attr("x", 180)
+              .attr("y", 8)
+              .attr("text-anchor", "middle")
+              .style("font-size", "10px")
+              .style("font-weight", "bold")
+              .text("Drug Addicts Breakdown by Reasons");
 
             var rssChart = new dimple.chart(svgFive, dataFive);
             rssChart.setBounds(60, 15, 252, 152);
@@ -190,21 +471,68 @@
             var yFive = rssChart.addMeasureAxis("y", "Total");
             yFive.tickFormat = 'f';
 
-            rssChart.addSeries("Reasons", dimple.plot.line);
+            var mySeriesFive = rssChart.addSeries("Reasons", dimple.plot.line);
+              mySeriesFive.lineMarkers = true;
+            var myLegendFive = rssChart.addLegend(425, 18, 5, 180, "right");
+
             rssChart.draw();
-          });
+
+            rssChart.legends = [];
+
+            svgFive.selectAll("title_text")
+              .data(["Click legend to","show/hide reasons:"])
+              .enter()
+              .append("text")
+                .attr("x", 316)
+                .attr("y", function (d, i) { return 10 + i * 12; })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style("color", "Black")
+                .text(function (d) { return d; });
+
+            var filterValuesFive = dimple.getUniqueValues(dataFive, "Reasons");
+
+            myLegendFive.shapes.selectAll("rect")
+              // Add a click event to each rectangle
+              .on("click", function (e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFiltersFive = [];
+                // If the filters contain the clicked shape hide it
+                filterValuesFive.forEach(function (f) {
+                  if (f === e.aggField.slice(-1)[0]) {
+                    hide = true;
+                  } else {
+                    newFiltersFive.push(f);
+                  }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                  d3.select(this).style("opacity", 0.4);
+                } else {
+                  newFiltersFive.push(e.aggField.slice(-1)[0]);
+                  d3.select(this).style("opacity", 0.9);
+                }
+                // Update the filters
+                filterValuesFive = newFiltersFive;
+                // Filter the data
+                rssChart.data = dimple.filterData(dataFive, "Reasons", filterValuesFive);
+
+                rssChart.draw(800);
+              });
+            });
         </script>
       </div>
 
       <div id="statesMap">
-        <h4>Mapping Out the Drug Addicts: Most addicts are in urban areas</h4>
+        <h4>Mapping Out the Drug Addicts: Most addicts are in urban developed cities</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
           Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
-        <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col2%2C+col3%2C+col4+from+1VD8Daa8mZXGZw5fuOlqPIztlZN9nEG1Zu03iMX2h+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=3.7313156833561862&amp;lng=104.37088114624021&amp;t=1&amp;z=7&amp;l=col2&amp;y=2&amp;tmplt=2&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.6&amp;hmr=50&amp;hmw=4&amp;hml=TWO_COL_LAT_LNG"></iframe>
+        <iframe width="450" height="230" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col2%2C+col3%2C+col4+from+1VD8Daa8mZXGZw5fuOlqPIztlZN9nEG1Zu03iMX2h+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=3.7313156833561862&amp;lng=104.37088114624021&amp;t=1&amp;z=7&amp;l=col2&amp;y=2&amp;tmplt=2&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.6&amp;hmr=50&amp;hmw=4&amp;hml=TWO_COL_LAT_LNG"></iframe>
       </div>
 
     </section>
