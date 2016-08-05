@@ -27,7 +27,7 @@
 
     <section>
       <div id="rehabChart">
-        <h4>Cost of Compulsary Rehab: Barely any change, no decrease to number of residents</h4>
+        <h4>Cost of Compulsory Rehab: Barely any change, no decrease to number of residents</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -38,21 +38,30 @@
           var svgOne = dimple.newSvg("#rehabChart", 450, 215);
            d3.csv("datasets_csv/puspen_cost.csv", function (dataOne) {
 
+             svgOne.append("text")
+               .attr("x", 180)
+               .attr("y", 8)
+               .attr("text-anchor", "middle")
+               .style("font-size", "10px")
+               .style("font-weight", "bold")
+               .text("Cost of Compulsory Rehab Treatment");
+
             var rehChart = new dimple.chart(svgOne, dataOne);
             rehChart.setBounds(60, 15, 252, 152)
             rehChart.addCategoryAxis("x", "Year");
             var yOne = rehChart.addMeasureAxis("y", "Cost Estimate (RM)");
               yOne.tickFormat = 'f';
-            rehChart.addMeasureAxis("z", "Number of Residents");
+            var zOne = rehChart.addMeasureAxis("z", "Number of Residents");
+              zOne.tickFormat = 'f';
             rehChart.addSeries("Year", dimple.plot.bubble);
-            var myLegendOne = rehChart.addLegend(370, 5, 5, 80, "right");
+            rehChart.defaultColors = [new dimple.color("rgb(158,202,225)")];
             rehChart.draw();
           });
         </script>
       </div>
 
       <div id="aadksChart">
-        <h4>Narcotics Agency Spending: Huge chunk goes to operation</h4>
+        <h4>Narcotic Agency Spending: Huge chunk goes to operation</h4>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
           Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
@@ -60,9 +69,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-          var svgTwo = dimple.newSvg("#aadksChart", 350, 250);
+          var svgTwo = dimple.newSvg("#aadksChart", 450, 215);
            d3.csv("datasets_csv/aadk_cost.csv", function (dataTwo) {
              console.log(dataTwo)
+
+             svgTwo.append("text")
+               .attr("x", 200)
+               .attr("y", 8)
+               .attr("text-anchor", "middle")
+               .style("font-size", "10px")
+               .style("font-weight", "bold")
+               .text("Narcotic Agency Spending");
 
              var aadkChart = new dimple.chart(svgTwo, dataTwo);
              aadkChart.setBounds(75, 30, 250, 150);
@@ -73,7 +90,26 @@
              var segments = aadkChart.addMeasureAxis("p", "Cost (RM)");
              var size = aadkChart.addMeasureAxis("z", "Total Cost (RM)");
              var ring = aadkChart.addSeries("Purpose", dimple.plot.pie);
-             var pie = aadkChart.addSeries("Total Cost (RM)", dimple.plot.pie);
+             var pie = aadkChart.addSeries("Year", dimple.plot.pie);
+             var myLegendTwo = aadkChart.addLegend(425, 18, 5, 180, "right");
+
+             myLegendTwo._getEntries = function () {
+               var orderedValues = ["Development", "Operation", "2010", "2011", "2012", "2013", "2014"];
+               var entries = [];
+               orderedValues.forEach(function (v) {
+                 entries.push(
+                   {
+                     key: v,
+                     fill: aadkChart.getColor(v).fill,
+                     stroke: aadkChart.getColor(v).stroke,
+                     opacity: aadkChart.getColor(v).opacity,
+                     aggField: [v]
+                   }
+                 );
+               }, this);
+
+               return entries;
+             };
 
              // Set the maximum radius for the bubbles
              ring.radius = 15;
@@ -83,11 +119,6 @@
              // margin (negative sizes are calculated inwards)
              ring.innerRadius = "-5px";
              pie.outerRadius = "-7px";
-
-             // Animate by date
-             var frame = 5000;
-             var aadkStory = aadkChart.setStoryboard("Year");
-             aadkStory.frameDuration = frame;
 
              aadkChart.draw();
          });
@@ -103,8 +134,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-          var svgThree = dimple.newSvg("#seizeChart", 325, 215);
+          var svgThree = dimple.newSvg("#seizeChart", 450, 215);
             d3.csv("datasets_csv/seizure_value.csv", function (dataThree) {
+
+              svgThree.append("text")
+                .attr("x", 200)
+                .attr("y", 8)
+                .attr("text-anchor", "middle")
+                .style("font-size", "10px")
+                .style("font-weight", "bold")
+                .text("Estimated Value of Drug Seizure");
+
               var seiChart = new dimple.chart(svgThree, dataThree);
               seiChart.setBounds(60, 15, 252, 152)
               var xThree = seiChart.addCategoryAxis("x", ["Year", "Type of Drug"]);
@@ -112,8 +152,54 @@
               seiChart.addMeasureAxis("y", "Estimated Value (RM)");
               seiChart.addMeasureAxis("z", "Estimated Value (RM)");
               seiChart.addSeries("Type of Drug", dimple.plot.bubble);
+              var myLegendThree = seiChart.addLegend(425, 18, 5, 180, "right");
+
               seiChart.draw();
-          });
+
+              seiChart.legends = [];
+
+              svgThree.selectAll("title_text")
+                .data(["Click legend to","show/hide type of drug:"])
+                .enter()
+                .append("text")
+                  .attr("x", 315)
+                  .attr("y", function (d, i) { return 10 + i * 12; })
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .style("color", "Black")
+                  .text(function (d) { return d; });
+
+              var filterValues = dimple.getUniqueValues(dataThree, "Type of Drug");
+
+              myLegendThree.shapes.selectAll("rect")
+                // Add a click event to each rectangle
+                .on("click", function (e) {
+                  // This indicates whether the item is already visible or not
+                  var hide = false;
+                  var newFilters = [];
+                  // If the filters contain the clicked shape hide it
+                  filterValues.forEach(function (f) {
+                    if (f === e.aggField.slice(-1)[0]) {
+                      hide = true;
+                    } else {
+                      newFilters.push(f);
+                    }
+                  });
+                  // Hide the shape or show it
+                  if (hide) {
+                    d3.select(this).style("opacity", 0.2);
+                  } else {
+                    newFilters.push(e.aggField.slice(-1)[0]);
+                    d3.select(this).style("opacity", 0.9);
+                  }
+                  // Update the filters
+                  filterValues = newFilters;
+                  // Filter the data
+                  seiChart.data = dimple.filterData(dataThree, "Type of Drug", filterValues);
+
+                  seiChart.draw(800);
+                });
+              });
         </script>
       </div>
 
