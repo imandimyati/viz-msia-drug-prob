@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Visualising Malaysia&#39;s Drug Abuse Issues</title>
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/github-light.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/dimple/2.2.0/dimple.latest.min.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Drug Crimes: Offenses and Punishments</h1>
+      <p>A look into drug-related offenses and punishments in Malaysia</p>
+      <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/main.html">The Costs of Tackling Drug Abuse<small><br>Looking at the costs of tackling drug abuse in Malaysia</small></a></p>
+      <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/art2.html">An In-Depth Look into Malaysia's Drug Addicts<small><br>Exploring the demographic data of drug addicts in Malaysia</small></a></p>
+      <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/art3.html">Drug Crimes: Offenses and Punishments<small><br>A look into drug-related offenses and punishments in Malaysia</small></a></p>
+      <p class="view"><a href="https://imandimyati.github.io/viz-msia-drug-prob/art4.html">'Drugging' Down the Nation<small><br>Making sense of the social impact in relations to drug abuse in Malaysia</small></a></p>
+      <a href="https://imandimyati.github.io/viz-msia-drug-prob/"><button>Home</button></a>
+    </header>
+
+    <section>
+      <div id="urineChart">
+        <h4>Police Arrest based on Urine Test: Numbers are still high</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        </script>
+      </div>
+
+      <div id="genderChart">
+        <h4>Arrested and Remanded: Huge gap between men and women</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+          var svgTwo = dimple.newSvg("#genderChart", 450, 300);
+          d3.csv("datasets_csv/institution_case_caught.csv", function (dataTwo) {
+
+            svgTwo.append("text")
+              .attr("x", 195)
+              .attr("y", 8)
+              .attr("text-anchor", "middle")
+              .style("font-size", "10px")
+              .style("font-weight", "bold")
+              .text("Number of People Arrested and Remanded in Institution");
+
+            var genChart = new dimple.chart(svgTwo, dataTwo);
+            genChart.setBounds(65, 25, 252, 152)
+
+            var xTwo = genChart.addCategoryAxis("x", ["Institution", "Crime"]);
+
+            var yTwo = genChart.addMeasureAxis("y", "Total");
+              yTwo.tickFormat = 'f';
+
+            var sTwo = genChart.addSeries("Gender", dimple.plot.bar);
+
+            sTwo.afterDraw = function (shapeTwo, dataTwo) {
+              // Get the shape as a d3 selection
+              var sTwo = d3.select(shapeTwo),
+                rect = {
+                  x: parseFloat(sTwo.attr("x")),
+                  y: parseFloat(sTwo.attr("y")),
+                  width: parseFloat(sTwo.attr("width")),
+                  height: parseFloat(sTwo.attr("height"))
+                };
+            };
+
+            var myLegend = genChart.addLegend(390, 40, 5, 180, "right");
+
+            // Write the day value to the console every time the animation changes
+            var myStoryboard = genChart.setStoryboard("Year");
+            // myStoryboard.onTick = function (e) {
+            //         console.log(e.frameValue);
+            //     };
+
+            sTwo.addEventHandler("click", function (e) {
+              console.log(e.frameValue); // Log the Date of the clicked bubble
+            });
+
+            genChart.draw();
+
+            // Move the story label to the left edge
+            myStoryboard.storyLabel.attr("x", 335);
+
+            genChart.legends = [];
+
+            svgTwo.selectAll("title_text")
+              .data(["Click legend to","show/hide gender:"])
+              .enter()
+              .append("text")
+                .attr("x", 325)
+                .attr("y", function (d, i) { return 35 + i * 12; })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .style("color", "Black")
+                .text(function (d) { return d; });
+
+            var filterValues = dimple.getUniqueValues(dataTwo, "Gender");
+
+            myLegend.shapes.selectAll("rect")
+              // Add a click event to each rectangle
+              .on("click", function (e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFilters = [];
+                // If the filters contain the clicked shape hide it
+                filterValues.forEach(function (f) {
+                  if (f === e.aggField.slice(-1)[0]) {
+                    hide = true;
+                  } else {
+                    newFilters.push(f);
+                  }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                  d3.select(this).style("opacity", 0.2);
+                } else {
+                  newFilters.push(e.aggField.slice(-1)[0]);
+                  d3.select(this).style("opacity", 0.9);
+                }
+                // Update the filters
+                filterValues = newFilters;
+                // Filter the data
+                genChart.data = dimple.filterData(dataTwo, "Gender", filterValues);
+
+                genChart.draw(800);
+
+              });
+            });
+        </script>
+      </div>
+
+      <div id="crimeChart">
+        <h4>Drug Crimes Committed: Despite harsh punishment, drug crimes still on the rise</h4>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui at finibus. Aenean magna sapien, pellentesque a diam ac, sagittis volutpat sem.
+          Quisque suscipit lorem nec tristique fringilla. Nam ultrices metus nulla, sed pretium libero tristique quis. Integer imperdiet aliquet ligula id blandit.
+          Cras porttitor condimentum elit. Integer id finibus tellus. Aenean nec dapibus lorem, sed vulputate dolor. In iaculis risus ac aliquam blandit. Aliquam erat volutpat.
+          Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
+
+        <script type="text/javascript">
+        </script>
+      </div>
+
+    </section>
+
+  </div>
+  <script src="javascripts/scale.fix.js"></script>
+</html>

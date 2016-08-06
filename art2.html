@@ -48,7 +48,7 @@
               .text("Drug Addicts Breakdown by Gender");
 
             var genChart = new dimple.chart(svg, data);
-            genChart.setBounds(60, 15, 252, 152);
+            genChart.setBounds(60, 20, 252, 152);
 
             var x = genChart.addCategoryAxis("x", "Year");
             x.addOrderRule("Date");
@@ -131,7 +131,7 @@
               .text("Drug Addicts Breakdown by Age");
 
             var ageChart = new dimple.chart(svgOne, dataOne);
-            ageChart.setBounds(60, 15, 252, 152);
+            ageChart.setBounds(60, 20, 252, 152);
 
             var xOne = ageChart.addCategoryAxis("x", "Year");
             xOne.addOrderRule("Date");
@@ -232,7 +232,7 @@
               .text("Drug Addicts Breakdown by Ethnicity");
 
             var ethChart = new dimple.chart(svgTwo, dataTwo);
-            ethChart.setBounds(60, 15, 252, 152);
+            ethChart.setBounds(60, 20, 252, 152);
 
             var xTwo = ethChart.addCategoryAxis("x", "Year");
             xTwo.addOrderRule("Date");
@@ -333,7 +333,7 @@
               .text("Drug Addicts Breakdown by Education Qualification");
 
             var eduChart = new dimple.chart(svgThree, dataThree);
-            eduChart.setBounds(60, 15, 252, 152);
+            eduChart.setBounds(60, 20, 252, 152);
 
             var xThree = eduChart.addCategoryAxis("x", "Year");
             xThree.addOrderRule("Date");
@@ -421,7 +421,7 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-        var svgFour = dimple.newSvg("#occupationChart", 450, 300);
+        var svgFour = dimple.newSvg("#occupationChart", 450, 320);
           d3.csv("datasets_csv/drug_addicts_occupation.csv", function (dataFour) {
             console.log(dataFour)
 
@@ -434,7 +434,7 @@
               .text("Drug Addicts Breakdown by Occupation");
 
             var occChart = new dimple.chart(svgFour, dataFour);
-            occChart.setBounds(60, 15, 252, 152);
+            occChart.setBounds(60, 20, 252, 152);
 
             var xFour = occChart.addCategoryAxis("x", "Year");
             xFour.addOrderRule("Date");
@@ -444,7 +444,7 @@
 
             var mySeriesFour = occChart.addSeries("Occupation", dimple.plot.line);
               mySeriesFour.lineMarkers = true;
-            var myLegendFour = occChart.addLegend(30, 230, 300, 80, "right");
+            var myLegendFour = occChart.addLegend(35, 230, 300, 80, "right");
 
             occChart.draw();
 
@@ -454,7 +454,7 @@
               .data(["Click legend to show/hide occupation:"])
               .enter()
               .append("text")
-                .attr("x", 32)
+                .attr("x", 36)
                 .attr("y", function (d, i) { return 220 + i * 12; })
                 .style("font-family", "sans-serif")
                 .style("font-size", "10px")
@@ -517,7 +517,7 @@
               .text("Drug Addicts Breakdown by Reasons");
 
             var rssChart = new dimple.chart(svgFive, dataFive);
-            rssChart.setBounds(60, 15, 252, 152);
+            rssChart.setBounds(60, 20, 252, 152);
 
             var xFive = rssChart.addCategoryAxis("x", "Year");
             xFive.addOrderRule("Date");
