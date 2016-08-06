@@ -97,7 +97,7 @@
               var firstTick = true;
 
               // Place the indicator bar chart to the right
-              indicator.setBounds(324, 38, 65, 40, "right");
+              indicator.setBounds(324, 46, 65, 40, "right");
 
               // Add dates along the y axis
               var yTwo = indicator.addCategoryAxis("y", "Year");
@@ -133,9 +133,9 @@
                       .enter()
                       .append("text")
                       .attr("x", 325)
-                      .attr("y", function (d, i) { return 18 + i * 8; })
+                      .attr("y", function (d, i) { return 18 + i * 12; })
                       .style("font-family", "sans-serif")
-                      .style("font-size", "8px")
+                      .style("font-size", "10px")
                       .style("color", "Black")
                       .text(function (d) { return d; });
 
@@ -157,7 +157,7 @@
                 zBubbles.tickFormat = 'f';
               bubbles.addSeries("Gender", dimple.plot.bubble)
 
-              var myLegendTwo = bubbles.addLegend(390, 95, 5, 180, "right");
+              var myLegendTwo = bubbles.addLegend(390, 110, 5, 180, "right");
 
               // Add a storyboard to the main chart and set the tick event
               var story = bubbles.setStoryboard("Year", onTick);
@@ -209,9 +209,9 @@
                 .enter()
                 .append("text")
                   .attr("x", 325)
-                  .attr("y", function (d, i) { return 95 + i * 8; })
+                  .attr("y", function (d, i) { return 105 + i * 12; })
                   .style("font-family", "sans-serif")
-                  .style("font-size", "8px")
+                  .style("font-size", "10px")
                   .style("color", "Black")
                   .text(function (d) { return d; });
 
@@ -281,7 +281,7 @@
              var sThree = criChart.addSeries("Dangerous Drug Act, 1952", dimple.plot.bar);
              sThree.stacked = false;
 
-             var myLegendThree = criChart.addLegend(458, 24, 5, 180, "right");
+             var myLegendThree = criChart.addLegend(458, 26, 5, 180, "right");
 
              criChart.draw();
 
@@ -292,9 +292,9 @@
                .enter()
                .append("text")
                  .attr("x", 325)
-                 .attr("y", function (d, i) { return 20 + i * 10; })
+                 .attr("y", function (d, i) { return 20 + i * 12; })
                  .style("font-family", "sans-serif")
-                 .style("font-size", "8px")
+                 .style("font-size", "10px")
                  .style("color", "Black")
                  .text(function (d) { return d; });
 
