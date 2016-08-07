@@ -35,8 +35,17 @@
           Vestibulum erat odio, fringilla eu rutrum ut, euismod eget ipsum. Nullam at faucibus nisl. Sed ornare elit odio, eu ullamcorper sem tincidunt ac.</p>
 
         <script type="text/javascript">
-          var svgOne = dimple.newSvg("#rehabChart", 325, 215);
+          var svgOne = dimple.newSvg("#rehabChart", 450, 300);
             d3.csv("datasets_csv/total_drug_rehab.csv", function (dataOne) {
+
+              svgOne.append("text")
+                .attr("x", 180)
+                .attr("y", 8)
+                .attr("text-anchor", "middle")
+                .style("font-size", "10px")
+                .style("font-weight", "bold")
+                .text("Number of People in Rehab Programmes");
+
               var rehChart = new dimple.chart(svgOne, dataOne);
               rehChart.setBounds(60, 15, 252, 152)
               var xOne = rehChart.addCategoryAxis("x", ["Year", "Institution"]);
@@ -46,8 +55,54 @@
               var zOne = rehChart.addMeasureAxis("z", "Total");
                 zOne.tickFormat = 'f';
               rehChart.addSeries("Institution", dimple.plot.bubble);
+              var myLegendOne = rehChart.addLegend(62, 230, 300, 80, "left");
+
               rehChart.draw();
-          });
+
+              rehChart.legends = [];
+
+              svgOne.selectAll("title_text")
+                .data(["Click legend to show/hide institution:"])
+                .enter()
+                .append("text")
+                  .attr("x", 60)
+                  .attr("y", function (d, i) { return 220 + i * 12; })
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .style("color", "Black")
+                  .text(function (d) { return d; });
+
+              var filterValuesOne = dimple.getUniqueValues(dataOne, "Institution");
+
+              myLegendOne.shapes.selectAll("rect")
+                // Add a click event to each rectangle
+                .on("click", function (e) {
+                  // This indicates whether the item is already visible or not
+                  var hide = false;
+                  var newFiltersOne = [];
+                  // If the filters contain the clicked shape hide it
+                  filterValuesOne.forEach(function (f) {
+                    if (f === e.aggField.slice(-1)[0]) {
+                      hide = true;
+                    } else {
+                      newFiltersOne.push(f);
+                    }
+                  });
+                  // Hide the shape or show it
+                  if (hide) {
+                    d3.select(this).style("opacity", 0.2);
+                  } else {
+                    newFiltersOne.push(e.aggField.slice(-1)[0]);
+                    d3.select(this).style("opacity", 0.9);
+                  }
+                  // Update the filters
+                  filterValuesOne = newFiltersOne;
+                  // Filter the data
+                  rehChart.data = dimple.filterData(dataOne, "Institution", filterValuesOne);
+
+                  rehChart.draw(800);
+                });
+              });
         </script>
       </div>
 
