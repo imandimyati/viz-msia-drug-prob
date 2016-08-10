@@ -216,6 +216,72 @@
         </script>
       </div>
 
+      <div id="methaChart">
+        <h4>Cost of Methadone Maintenance Therapy: Millions spent on harm reduction</h4>
+
+        <p>Harm reduction in the context of HIV prevention in Malaysia basically refers to two programmes, the Methadone Maintenance Therapy (MMT) programme and the Needle Syringe Exchange Programme (NSEP). The MMT programme is an opioid substitution therapy using methadone and is aimed at preventing HIV transmission by reducing injection drug use and the sharing of contaminated injecting equipment.</p>
+        <p>According to a study done as part of the World Bank's technical assistance to Malaysia under Malaysia AIDS Support II project, found that if looking at only at the MMT treatment alone, during the 2006-2013 periods, the MMT programme alone is cost-effective but not cost saving.</p>
+        <p>Projection of expected future epidemiological and economic benefits show MMT programme would improve in their cost-effectiveness ratios but not become cost saving. The chart below how much has been spent for MMT, the expenditure is inclusive of human resources, facility overheads and purchase of methadone at government clinics. </p>
+
+        <script type="text/javascript">
+          var svgFour = dimple.newSvg("#methaChart", 450, 230);
+           d3.csv("datasets_csv/mmt_cost.csv", function (dataFour) {
+
+             svgFour.append("text")
+               .attr("x", 200)
+               .attr("y", 8)
+               .attr("text-anchor", "middle")
+               .style("font-size", "10px")
+               .style("font-weight", "bold")
+               .text("Expenditure for Methadone Maintenance Therapy");
+
+            var metChart = new dimple.chart(svgFour, dataFour);
+            metChart.setBounds(80, 35, 252, 152)
+            metChart.addCategoryAxis("x", "Year");
+            var yFour = metChart.addMeasureAxis("y", "Expenditure (RM)");
+              yFour.tickFormat = 'f';
+            var zFour = metChart.addMeasureAxis("z", "Expenditure (RM)");
+              zFour.tickFormat = 'f';
+            metChart.addSeries("Year", dimple.plot.bubble);
+            metChart.defaultColors = [new dimple.color("rgb(188,189,220)")];
+            metChart.draw();
+          });
+        </script>
+      </div>
+
+      <div id="syringeChart">
+        <h4>Cost of Needle-Syringe Exchange Programme: An increasing ongoing effort and investment</h4>
+
+        <p>The NSEP is aimed at the provision of clean needles and syringes to person who inject drug (PWID) in order to reduce cross HIV infections among PWID through sharing of contaminated needles and other injecting equipment. </p>
+        <p>In general, all NSP clients receive packages consisting of sterile needle and syringes and other safe injecting paraphernalia such as alcohol swabs and cotton balls. </p>
+        <p>In the same study done to see the return on investment and cost-effectiveness of MMT, it was found that implementing NSEP alone would be cost-effective and cost-saving within all the observed time frames.  Therefore, over the years more has been into this effort. The chart below projects how much has been pumped into the programme over the years. </p>
+
+        <script type="text/javascript">
+          var svgFive = dimple.newSvg("#syringeChart", 450, 215);
+           d3.csv("datasets_csv/nsp_cost.csv", function (dataFive) {
+
+             svgFive.append("text")
+               .attr("x", 180)
+               .attr("y", 8)
+               .attr("text-anchor", "middle")
+               .style("font-size", "10px")
+               .style("font-weight", "bold")
+               .text("Expenditure on Needle and Syringe");
+
+            var syrChart = new dimple.chart(svgFive, dataFive);
+            syrChart.setBounds(70, 15, 252, 152)
+            syrChart.addCategoryAxis("x", "Year");
+            var yFive = syrChart.addMeasureAxis("y", "Expenditure (RM)");
+              yFive.tickFormat = 'f';
+            var zFive = syrChart.addMeasureAxis("z", "Expenditure (RM)");
+              zFive.tickFormat = 'f';
+            syrChart.addSeries("Year", dimple.plot.bubble);
+            syrChart.defaultColors = [new dimple.color("rgb(253,174,107)")];
+            syrChart.draw();
+          });
+        </script>
+      </div>
+
     </section>
 
   </div>
