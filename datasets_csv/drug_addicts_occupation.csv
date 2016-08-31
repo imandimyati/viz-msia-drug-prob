@@ -1,7 +1,7 @@
 Year,Occupation,Total
 2010,Labour,6366
-2010,Unemployed ,2671
-2010, Agriculture,2486
+2010,Unemployed,2671
+2010,Agriculture,2486
 2010,Services,2399
 2010,Sales,1837
 2010,Transportation,1507
@@ -14,8 +14,8 @@ Year,Occupation,Total
 2010,Entertainment,73
 2010,Part Time,2058
 2011,Labour,5214
-2011,Unemployed ,1840
-2011, Agriculture,2040
+2011,Unemployed,1840
+2011,Agriculture,2040
 2011,Services,2559
 2011,Sales,1762
 2011,Transportation,1202
@@ -28,8 +28,8 @@ Year,Occupation,Total
 2011,Entertainment,65
 2011,Part Time,1709
 2012,Labour,3597
-2012,Unemployed ,1372
-2012, Agriculture,1925
+2012,Unemployed,1372
+2012,Agriculture,1925
 2012,Services,2189
 2012,Sales,1545
 2012,Transportation,904
@@ -42,8 +42,8 @@ Year,Occupation,Total
 2012,Entertainment,30
 2012,Part Time,1081
 2013,Labour,4555
-2013,Unemployed ,2509
-2013, Agriculture,1607
+2013,Unemployed,2509
+2013,Agriculture,1607
 2013,Services,2582
 2013,Sales,1851
 2013,Transportation,1141
@@ -56,8 +56,8 @@ Year,Occupation,Total
 2013,Entertainment,45
 2013,Part Time,4240
 2014,Labour,4805
-2014,Unemployed ,2746
-2014, Agriculture,1814
+2014,Unemployed,2746
+2014,Agriculture,1814
 2014,Services,2460
 2014,Sales,1837
 2014,Transportation,1144
