@@ -8,7 +8,7 @@ import matplotlib.pyplot as	plt
 
 # import the csv file
 # all_data = pd.read_csv('drug_addicts_gender.csv')
-# all_data = pd.read_csv('drug_addicts_age.csv')
+all_data = pd.read_csv('drug_addicts_age.csv')
 # all_data = pd.read_csv('drug_addicts_ethnic.csv')
 # all_data = pd.read_csv('drug_addicts_education.csv')
 # all_data = pd.read_csv('drug_addicts_occupation.csv')
@@ -25,15 +25,15 @@ all_data = all_data.dropna()
 # print(all_data.set_index('Gender').diff())
 
 # age
-# print(all_data[all_data['Age'] == 'Under 13'].describe())
-# print(all_data[all_data['Age'] == '13-15'].describe())
-# print(all_data[all_data['Age'] == '16-19'].describe())
-# print(all_data[all_data['Age'] == '20-24'].describe())
-# print(all_data[all_data['Age'] == '25-29'].describe())
-# print(all_data[all_data['Age'] == '30-34'].describe())
-# print(all_data[all_data['Age'] == '35-39'].describe())
-# print(all_data[all_data['Age'] == '40 and Over'].describe())
-# print(all_data[all_data['Age'] == 'No Information'].describe())
+print(all_data[all_data['Age'] == 'Under 13'].describe())
+print(all_data[all_data['Age'] == '13-15'].describe())
+print(all_data[all_data['Age'] == '16-19'].describe())
+print(all_data[all_data['Age'] == '20-24'].describe())
+print(all_data[all_data['Age'] == '25-29'].describe())
+print(all_data[all_data['Age'] == '30-34'].describe())
+print(all_data[all_data['Age'] == '35-39'].describe())
+print(all_data[all_data['Age'] == '40 and Over'].describe())
+print(all_data[all_data['Age'] == 'No Information'].describe())
 
 # ethnic
 # print(all_data[all_data['Ethnicity'] == 'Malay'].describe())
