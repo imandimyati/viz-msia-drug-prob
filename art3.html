@@ -38,7 +38,7 @@
         <p>However, these arrests do not automatically mean they’ll be charged under the Dangerous Drug Act 1952. These arrests are just at the initial level and further investigation is needed. But, what the numbers can tell is that there are a lot drug users. The chart below shows that the numbers have improved but remain in the 300k stratum. </p>
 
         <script type="text/javascript">
-        var svgOne = dimple.newSvg("#urineChart", 400, 215);
+        var svgOne = dimple.newSvg("#urineChart", 400, 232);
           d3.csv("datasets_csv/urine_test_caught.csv", function (dataOne) {
             console.log(dataOne)
 
@@ -62,6 +62,16 @@
             var sOne = uriChart.addSeries(null, dimple.plot.line);
               sOne.lineMarkers = true;
             uriChart.draw();
+
+            svgOne.selectAll("notes_text")
+              .data(["Data source: National Anti-Drug Agency"])
+              .enter()
+              .append("text")
+                .attr("x", 25)
+                .attr("y", function(d, i) { return 228 + i *15; } )
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .text(function (d) { return d; });
         });
         </script>
       </div>
@@ -75,7 +85,7 @@
         <p>In the chart below, the most number of prisoners are people whose crime is being a drug addict. This is followed by being both a distributor and a drug addict. The chart below reflects the numbers for the year 2013 and 2014. </p>
 
         <script type="text/javascript">
-        var svgTwo = dimple.newSvg("#genderChart", 450, 300);
+        var svgTwo = dimple.newSvg("#genderChart", 450, 350);
           d3.csv("datasets_csv/institution_case_caught.csv", function (dataTwo) {
               console.log(dataTwo);
 
@@ -248,6 +258,16 @@
 
                   bubbles.draw(800);
             });
+            svgTwo.selectAll("notes_text")
+              .data(["Data source: National Anti-Drug Agency",
+                    "Note(s): The size of the bubbles indicates the total number of offenders", "by the type of crime committed (e.g distributor, drug addict)"])
+              .enter()
+              .append("text")
+                .attr("x", 15)
+                .attr("y", function(d, i) { return 315 + i *15; } )
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .text(function (d) { return d; });
           });
         </script>
       </div>
@@ -332,6 +352,15 @@
 
                  criChart.draw(800);
             });
+            svgThree.selectAll("notes_text")
+              .data(["Data source: National Anti-Drug Agency"])
+              .enter()
+              .append("text")
+                .attr("x", 25)
+                .attr("y", function(d, i) { return 220 + i *15; } )
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .text(function (d) { return d; });
          });
         </script>
       </div>

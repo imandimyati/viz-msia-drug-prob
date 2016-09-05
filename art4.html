@@ -40,7 +40,7 @@
         <p>If they are not sober or fully weaned from drugs, it will impair their performance, increase the likelihood of absenteeism, disciplinary problems and even dismissal. The chart below shows the number of people who could have been part of a productive labour force. </p>
 
         <script type="text/javascript">
-          var svgOne = dimple.newSvg("#rehabChart", 450, 300);
+          var svgOne = dimple.newSvg("#rehabChart", 450, 310);
             d3.csv("datasets_csv/total_drug_rehab.csv", function (dataOne) {
 
               svgOne.append("text")
@@ -107,6 +107,16 @@
 
                   rehChart.draw(800);
                 });
+                svgOne.selectAll("notes_text")
+                  .data(["Data source: National Anti-Drug Agency",
+                        "Note(s): The size of the bubbles indicates the total number of residents in the institution"])
+                  .enter()
+                  .append("text")
+                    .attr("x", 15)
+                    .attr("y", function(d, i) { return 295 + i *15; } )
+                    .style("font-family", "sans-serif")
+                    .style("font-size", "10px")
+                    .text(function (d) { return d; });
               });
         </script>
       </div>

@@ -47,7 +47,7 @@
 
 
         <script type="text/javascript">
-          var svgOne = dimple.newSvg("#rehabChart", 450, 215);
+          var svgOne = dimple.newSvg("#rehabChart", 450, 240);
            d3.csv("datasets_csv/puspen_cost.csv", function (dataOne) {
 
              svgOne.append("text")
@@ -68,6 +68,17 @@
             rehChart.addSeries("Year", dimple.plot.bubble);
             rehChart.defaultColors = [new dimple.color("rgb(158,202,225)")];
             rehChart.draw();
+
+            svgOne.selectAll("notes_text")
+              .data(["Data source: National Anti-Drug Agency",
+                    "Note(s): The size of the bubbles indicates the total cost for the year"])
+              .enter()
+              .append("text")
+                .attr("x", 15)
+                .attr("y", function(d, i) { return 220 + i *15; } )
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .text(function (d) { return d; });
           });
         </script>
       </div>
@@ -82,7 +93,7 @@
 
 
         <script type="text/javascript">
-          var svgTwo = dimple.newSvg("#aadksChart", 450, 215);
+          var svgTwo = dimple.newSvg("#aadksChart", 450, 240);
            d3.csv("datasets_csv/aadk_cost.csv", function (dataTwo) {
              console.log(dataTwo)
 
@@ -134,6 +145,16 @@
              pie.outerRadius = "-7px";
 
              aadkChart.draw();
+
+             svgTwo.selectAll("notes_text")
+               .data(["Data source: National Anti-Drug Agency"])
+               .enter()
+               .append("text")
+                 .attr("x", 25)
+                 .attr("y", function(d, i) { return 230 + i *15; } )
+                 .style("font-family", "sans-serif")
+                 .style("font-size", "10px")
+                 .text(function (d) { return d; });
          });
         </script>
       </div>
@@ -147,7 +168,7 @@
         <p>The chart below tells the story better. </p>
 
         <script type="text/javascript">
-          var svgThree = dimple.newSvg("#seizeChart", 450, 215);
+          var svgThree = dimple.newSvg("#seizeChart", 450, 240);
             d3.csv("datasets_csv/seizure_value.csv", function (dataThree) {
 
               svgThree.append("text")
@@ -211,7 +232,19 @@
                   seiChart.data = dimple.filterData(dataThree, "Type of Drug", filterValues);
 
                   seiChart.draw(800);
+
                 });
+
+                svgThree.selectAll("notes_text")
+                  .data(["Data source: National Anti-Drug Agency",
+                        "Note(s): The size of the bubbles indicates the total estimated value"])
+                  .enter()
+                  .append("text")
+                    .attr("x", 15)
+                    .attr("y", function(d, i) { return 225 + i *15; } )
+                    .style("font-family", "sans-serif")
+                    .style("font-size", "10px")
+                    .text(function (d) { return d; });
               });
         </script>
       </div>
@@ -224,7 +257,7 @@
         <p>Projection of expected future epidemiological and economic benefits show MMT programme would improve in their cost-effectiveness ratios but not become cost saving. The chart below how much has been spent for MMT, the expenditure is inclusive of human resources, facility overheads and purchase of methadone at government clinics. </p>
 
         <script type="text/javascript">
-          var svgFour = dimple.newSvg("#methaChart", 450, 230);
+          var svgFour = dimple.newSvg("#methaChart", 450, 260);
            d3.csv("datasets_csv/mmt_cost.csv", function (dataFour) {
 
              svgFour.append("text")
@@ -245,6 +278,16 @@
             metChart.addSeries("Year", dimple.plot.bubble);
             metChart.defaultColors = [new dimple.color("rgb(188,189,220)")];
             metChart.draw();
+            svgFour.selectAll("notes_text")
+              .data(["Data source: World Bank's Malaysia AIDS Support II Project Report",
+                    "Note(s): The size of the bubbles indicates the total expenditure"])
+              .enter()
+              .append("text")
+                .attr("x", 15)
+                .attr("y", function(d, i) { return 240 + i *15; } )
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .text(function (d) { return d; });
           });
         </script>
       </div>
@@ -257,7 +300,7 @@
         <p>In the same study done to see the return on investment and cost-effectiveness of MMT, it was found that implementing NSEP alone would be cost-effective and cost-saving within all the observed time frames.  Therefore, over the years more has been put into this effort. The chart below projects how much has been pumped into the programme over the years. </p>
 
         <script type="text/javascript">
-          var svgFive = dimple.newSvg("#syringeChart", 450, 215);
+          var svgFive = dimple.newSvg("#syringeChart", 450, 250);
            d3.csv("datasets_csv/nsp_cost.csv", function (dataFive) {
 
              svgFive.append("text")
@@ -278,6 +321,17 @@
             syrChart.addSeries("Year", dimple.plot.bubble);
             syrChart.defaultColors = [new dimple.color("rgb(253,174,107)")];
             syrChart.draw();
+
+            svgFive.selectAll("notes_text")
+              .data(["Data source: World Bank's Malaysia AIDS Support II Project Report",
+                    "Note(s): The size of the bubbles indicates the total expenditure"])
+              .enter()
+              .append("text")
+                .attr("x", 15)
+                .attr("y", function(d, i) { return 220 + i *15; } )
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .text(function (d) { return d; });
           });
         </script>
       </div>

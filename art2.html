@@ -37,7 +37,7 @@
         <p>The same cannot be said about men. From 2010 until 2014, the numbers has always been a five-digit number. While the numbers seemed to decrease from 2010, it has once again climbed up in 2012. The chart below demonstrates the number of drug addicts by gender over the year (2010 to 2014).</p>
 
         <script type="text/javascript">
-        var svg = dimple.newSvg("#genderChart", 450, 215);
+        var svg = dimple.newSvg("#genderChart", 450, 230);
           d3.csv("datasets_csv/drug_addicts_gender.csv", function (data) {
             console.log(data)
 
@@ -107,6 +107,15 @@
 
                 genChart.draw(800);
               });
+              svg.selectAll("notes_text")
+                .data(["Data source: National Anti-Drug Agency"])
+                .enter()
+                .append("text")
+                  .attr("x", 25)
+                  .attr("y", function(d, i) { return 220 + i *15; } )
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .text(function (d) { return d; });
             });
         </script>
       </div>
@@ -119,7 +128,7 @@
         <p>While the numbers are still considered small, we can’t disregard the fact that there are people as young 13 to 15 years old who are drug addicts. Explore the chart below to get a clearer picture on the numbers.</p>
 
         <script type="text/javascript">
-        var svgOne = dimple.newSvg("#ageChart", 450, 215);
+        var svgOne = dimple.newSvg("#ageChart", 450, 230);
           d3.csv("datasets_csv/drug_addicts_age.csv", function (dataOne) {
             console.log(dataOne)
 
@@ -207,6 +216,15 @@
 
                 ageChart.draw(800);
               });
+              svgOne.selectAll("notes_text")
+                .data(["Data source: National Anti-Drug Agency"])
+                .enter()
+                .append("text")
+                  .attr("x", 25)
+                  .attr("y", function(d, i) { return 220 + i *15; } )
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .text(function (d) { return d; });
             });
         </script>
       </div>
@@ -219,7 +237,7 @@
         <p>While the gap between Chinese and Indian are often just around a few hundreds, the gap between Malays and the rest of the ethnic group is massive. Over the years, there has been a consistent five-digit difference as shown by the chart below. </p>
 
         <script type="text/javascript">
-        var svgTwo = dimple.newSvg("#ethnicChart", 450, 215);
+        var svgTwo = dimple.newSvg("#ethnicChart", 450, 230);
           d3.csv("datasets_csv/drug_addicts_ethnic.csv", function (dataTwo) {
             console.log(dataTwo)
 
@@ -307,6 +325,15 @@
 
                 ethChart.draw(800);
               });
+              svgTwo.selectAll("notes_text")
+                .data(["Data source: National Anti-Drug Agency"])
+                .enter()
+                .append("text")
+                  .attr("x", 25)
+                  .attr("y", function(d, i) { return 220 + i *15; } )
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .text(function (d) { return d; });
             });
         </script>
       </div>
@@ -319,7 +346,7 @@
         <p>Another thing to note is that, education qualification can also be construed as a wage indicator. There are no data collected on the breakdown of drug addicts based on wages, but we can hypothesize that those with a degree fare much better in that department compared to those who didn’t make it to the tertiary level. Explore the chart below to understand better. </p>
 
         <script type="text/javascript">
-        var svgThree = dimple.newSvg("#educationChart", 450, 215);
+        var svgThree = dimple.newSvg("#educationChart", 450, 230);
           d3.csv("datasets_csv/drug_addicts_education.csv", function (dataThree) {
             console.log(dataThree)
 
@@ -407,6 +434,15 @@
 
                 eduChart.draw(800);
               });
+              svgThree.selectAll("notes_text")
+                .data(["Data source: National Anti-Drug Agency"])
+                .enter()
+                .append("text")
+                  .attr("x", 25)
+                  .attr("y", function(d, i) { return 220 + i *15; } )
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .text(function (d) { return d; });
             });
         </script>
       </div>
@@ -420,7 +456,7 @@
         <p>Another group that has seen a spike of increase over the years is those working part-time jobs. In 2013, the number exploded from around 1,000 in 2012 to 4,000. Notably, the two field that have recorded two-digit numbers are clerical and entertainment. See the chart below on the breakdown of drug addicts based on their occupation. </p>
 
         <script type="text/javascript">
-        var svgFour = dimple.newSvg("#occupationChart", 450, 320);
+        var svgFour = dimple.newSvg("#occupationChart", 450, 340);
           d3.csv("datasets_csv/drug_addicts_occupation.csv", function (dataFour) {
             console.log(dataFour)
 
@@ -490,6 +526,15 @@
 
                 occChart.draw(800);
               });
+              svgFour.selectAll("notes_text")
+                .data(["Data source: National Anti-Drug Agency"])
+                .enter()
+                .append("text")
+                  .attr("x", 25)
+                  .attr("y", function(d, i) { return 320 + i *15; } )
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .text(function (d) { return d; });
             });
         </script>
       </div>
@@ -502,7 +547,7 @@
         <p>Individuals with a family history of drug abuse are also far more likely to develop an addiction than an individual with no family background of addiction. Other reasons can be explored in the chart below. </p>
 
         <script type="text/javascript">
-        var svgFive = dimple.newSvg("#reasonsChart", 450, 215);
+        var svgFive = dimple.newSvg("#reasonsChart", 450, 230);
           d3.csv("datasets_csv/drug_addicts_reasons.csv", function (dataFive) {
             console.log(dataFive)
 
@@ -572,6 +617,15 @@
 
                 rssChart.draw(800);
               });
+              svgFive.selectAll("notes_text")
+                .data(["Data source: National Anti-Drug Agency"])
+                .enter()
+                .append("text")
+                  .attr("x", 25)
+                  .attr("y", function(d, i) { return 220 + i *15; } )
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .text(function (d) { return d; });
             });
         </script>
       </div>
