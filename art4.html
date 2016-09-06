@@ -26,21 +26,22 @@
     </header>
 
     <section>
-      <h4>Drug addiction doesn’t just affect the addict alone. It affects many aspects and has a far reaching effect from the addict’s own family, friends and to an extent, the society as a whole. We already know that tax payers’ money are used to fight drug abuse, but how far does it impact us socially?</h4>
-      <p>In the case of family and friends, we can assume that drug abuse causes broken relationships. The person who is addicted may have a change of personality and is prone to mood swings, violent outbursts, secrecy and other forms of extreme behavior that may cause turmoil to relationships.</p>
-      <p>With Malaysia as a country that highly regard family value and preserving the family name, drug abuse is no laughing matter. Family members may feel embarrassed or ashamed of such behaviour. They will be bothered by what others might think and are unsure as to what to do for the best. The costs of an addiction not only affect the addict but can also encompass family and friends. So, they may also have to shoulder the financial burden. </p>
+      <h4>Drug addiction doesn’t just affect the addict alone. It affects many aspects and has a far reaching effect from an addict’s own family, friends and to an extent, the society as a whole. We already know that tax payers’ money are used to fight drug abuse, but how far does it impact us socially?</h4>
+      <p>In the case of family and friends, we can assume that drug abuse causes broken relationships. The person who is addicted to drug may have a change of personality and is prone to mood swings, violent outbursts, secrecy and other forms of extreme behavior that may cause turmoil to relationships.</p>
+      <p>Malaysia is a country that regards family values highly and is concerned about preserving a good family name. That’s why drug abuse is no laughing matter. Family members may feel embarrassed or ashamed of deviant behaviour. They will be bothered by what society might think. </p>
+      <p>The costs of an addiction also affect family and friends. They may have to shoulder the financial burden. If the addict is a person who contributes to the household income, a family might lose their source of income and make things difficult for the rest of the family.</p>
 
       <div id="rehabChart">
         <h4>People in Rehab Programmes: People who could have been part of the workforce</h4>
 
-        <p>According to Prof. Dr Lukman Zawawi Mohamad, drug abuse affects the national economic performance. It is estimated that the overall total costs of substance abuse in Malaysia reached millions of ringgit which are used for spending on productivity and health- and crime-related costs annually. </p>
-        <p>”This does not include the breadth of destructive public health and safety implications of drug abuse, such as family disintegration, loss of employment, failure in school, domestic violence, and child abuse,” he added.</p>
-        <p>It is no surprise that drug abuse causes loss in productivity, mainly due to labor participation costs, participation in drug abuse treatment, incarceration, and premature death. The addicts who are prison or PUSPEN/CCRC are most likely not working or contributing anything to the nation’s productivity as they are not part of the labour force. </p>
-        <p>In 2014, around 18,000 people who could have been part of the labour force are unable to contribute to the nation. Instead, they have to serve out their sentence of being a drug addict. For those addicts who are, there are many stigma and discrimination that they do face. </p>
-        <p>If they are not sober or fully weaned from drugs, it will impair their performance, increase the likelihood of absenteeism, disciplinary problems and even dismissal. The chart below shows the number of people who could have been part of a productive labour force. </p>
+        <p>According to Prof. Dr Lukman Zawawi Mohamad, drug abuse affects the national economic performance. As highlighted in ‘The Costs of Tackling Drug Abuse’, it is estimated that the average total cost of tackling substance abuse in Malaysia is around RM350 million.</p>
+        <p>”This does not include the breadth of destructive public health and safety implications of drug abuse, such as family disintegration, loss of employment, failure in school, domestic violence, and child abuse,” said Lukman.</p>
+        <p>It is no surprise also to see that drug abuse causes loss in productivity, mainly due to labour participation costs, participation in drug abuse treatment, incarceration, and premature death. The addicts who are in prison or PUSPEN/CCRC are not working or contributing anything to the nation’s productivity as they are not part of the labour force. They are in incarceration and they add to the cost of participation in drug abuse treatment.</p>
+        <p>In 2014, around 18,000 people who could have been part of the labour force were unable to contribute to the nation. Instead, they had to serve out their sentence or were incarcerated. For the addicts who are still part of the community, they face being stigmatised and discriminated by the society.</p>
+        <p>Most of them will find it difficult to keep their job. If they are not sober or fully weaned from drugs, it will impair their performance, increase the likelihood of absenteeism, disciplinary problems and even dismissal. The chart below shows the number of people who could have been part of a productive labour force.</p>
 
         <script type="text/javascript">
-          var svgOne = dimple.newSvg("#rehabChart", 450, 310);
+          var svgOne = dimple.newSvg("#rehabChart", 450, 315);
             d3.csv("datasets_csv/total_drug_rehab.csv", function (dataOne) {
 
               svgOne.append("text")
@@ -120,18 +121,61 @@
               });
         </script>
       </div>
-
+      <div id="hivpreChart">
         <h4>HIV/AIDS Epidemic: Drug abuse contribute to spread of HIV/AIDS</h4>
 
-        <p>Injecting drug or person who inject drug has been the main driving factor for the country’s epidemic. This is mainly caused by sharing needles. Thankfully, thanks to the Needle and Syringe Exchange Programme (NSEP) launched in February 2006, the number has decreased. </p>
-        <p>Share of transmission through injecting drug use has declined significantly from 60-75% range in 1990s to less than 20% in 2014. However, this does not change the fact that there are still a big number of people that can spread the disease.</p>
+        <p>Injecting drug user or person who inject drug has been the main driving factor for the country’s epidemic. This is mainly caused by sharing needles. Thankfully, thanks to the Needle and Syringe Exchange Programme (NSEP) launched in February 2006, the number has decreased dramatically.</p>
+        <p>Share of transmission through injecting drug use has declined significantly from 60-75% range in 1990s to less than 20% in 2014. However, this does not change the fact that there are still a number of drug addicts that spread the disease.</p>
 
+        <script type="text/javascript">
+          var svgTwo = dimple.newSvg("#hivpreChart", 400, 265);
+            d3.csv("datasets_csv/hiv_prevalence.csv", function (dataTwo) {
+              console.log(dataTwo)
+
+              svgTwo.append("text")
+                .attr("x", 190)
+                .attr("y", 8)
+                .attr("text-anchor", "middle")
+                .style("font-size", "10px")
+                .style("font-weight", "bold")
+                .text("HIV Prevalence in People Who Inject Drugs");
+
+              var hivChart = new dimple.chart(svgTwo, dataTwo);
+              hivChart.setBounds(65, 30, 252, 152);
+
+              var xTwo = hivChart.addCategoryAxis("x", "Year");
+              xTwo.addOrderRule("Date");
+
+              var yTwo = hivChart.addMeasureAxis("y", "Total");
+              yTwo.tickFormat = '.f';
+
+              var sTwo = hivChart.addSeries(null, dimple.plot.line);
+                sTwo.lineMarkers = true;
+              hivChart.draw();
+
+              svgTwo.selectAll("notes_text")
+                .data(["Data source: Global AIDS Response Progress Report Malaysia 2015",
+                      "Note(s): The total indicates the percentage of people who inject", "drugs who are living with HIV"])
+                .enter()
+                .append("text")
+                  .attr("x", 35)
+                  .attr("y", function(d, i) { return 228 + i *15; } )
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .text(function (d) { return d; });
+          });
+        </script>
+      </div>
+      <div id="crimeMontage">
         <h4>Feeding the addiction with petty crimes</h4>
 
         <p>Many researches have pointed out that drugs and crimes are interrelated. The major impact to society is that drug addicts are prone to commit crimes in order to feed their addiction. </p>
         <p>"They need money to finance their drug taking habit and for that they seldom have money, so they indulge themselves in petty crimes and in consequence they entangle themselves in big crimes also."</p>
-        <p>"There are a considerable number of people arrested for serious crimes in Malaysia, including murder, child abuse, domestic violence, robbery and assault, were under the influence of drugs," said Lukman.</p>
+        <p>"There are a considerable number of people arrested for serious crimes in Malaysia, including murder, child abuse, domestic violence, robbery and assault, were committed when they were under the influence of drugs," said Lukman.</p>
 
+        <img src="asset/img/headlines_montage.jpg" width="460px" height="250px">
+        <p><small><center>Drug-related crimes headlines published by local media</center></small></p>
+      </div>
     </section>
 
   </div>
