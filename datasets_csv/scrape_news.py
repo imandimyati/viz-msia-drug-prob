@@ -10,11 +10,30 @@ for url in links:
     news = page_data.find_all('div',class_='view-content')
 
     for items in news:
-        title = items.find('h2',class_='news-title')
-        date = items.find('div',class_='date-search')
-        lead = items.find('p',class_='lead')
+        title = items.find_all('h2',class_='news-title')
+        date = items.find_all('div',class_='date-search')
+        lead = items.find_all('p',class_='lead')
         # print(title.text)
         print(title.text,'\n',date.text,'\n',lead.text)
+
+# import lxml.html as lh
+#
+# root_url = 'http://www.bharian.com.my/search?s=jenayah%20dadah'
+# page_ids = ['&page=1', '&page=2','&page=3','&page=4','&page=5']
+#
+# def scrape_page(page_id):
+#     url = root_url + page_id
+#     tree = lh.parse(url)
+#
+#     title = tree.xpath("//h2[@class='news-title']").text_content()
+#     date = tree.xpath("//div[@class='date-search']").text_content()
+#     lead = tree.xpath("//p[@class='lead']").text_content()
+#
+#     return title, date, lead
+#
+# if __name__ == '__main__':
+#     for page_id in page_ids:
+#         title, date, lead = scrape_page(page_id)
 
 # with open('drugnews.csv','w') as csvfile:
 #     writer = csv.writer(csvfile)
